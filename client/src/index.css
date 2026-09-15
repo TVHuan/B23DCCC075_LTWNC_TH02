@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#F8FAFC] text-[#0F172A] font-sans antialiased selection:bg-brand-100 selection:text-brand-900;
+  }
+}
+
+/* Linear & Things 3 styled Strike-through animation */
+@keyframes strikeAnimation {
+  0% {
+    width: 0%;
+    opacity: 0.3;
+  }
+  100% {
+    width: 100%;
+    opacity: 0.8;
+  }
+}
+
+.assignment-completed-title {
+  position: relative;
+  color: #64748B !important;
+  text-decoration: line-through;
+  text-decoration-color: #94A3B8;
+  text-decoration-thickness: 1.5px;
+  transition: all 0.25s ease-in-out;
+}
+
+/* Checkbox pulse on click */
+@keyframes checkPop {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.18);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-check-pop {
+  animation: checkPop 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Subtle modern scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Glassmorphism effects */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
