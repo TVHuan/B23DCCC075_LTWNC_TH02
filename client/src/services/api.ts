@@ -1,6 +1,6 @@
 import { ApiResponse, Assignment, AssignmentFilter, CreateAssignmentInput, UpdateAssignmentInput } from '../features/assignments/types';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || '/api/assignments';
+const API_BASE_URL = '/api/assignments';
 const STORAGE_KEY = 'student_deadline_tracker_cache_v1';
 
 // Initial fallback mock data for offline/standalone persistence
@@ -93,18 +93,22 @@ function getStoredAssignments(): Assignment[] {
     if (raw) {
       return JSON.parse(raw);
     }
-  } catch (e) {
-    console.warn('Could not read from localStorage:', e);
+  } catch {
+    // Ignore storage read error
   }
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(INITIAL_FALLBACK_ASSIGNMENTS));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(INITIAL_FALLBACK_ASSIGNMENTS));
+  } catch {
+    // Ignore storage write error
+  }
   return INITIAL_FALLBACK_ASSIGNMENTS;
 }
 
 function saveStoredAssignments(items: Assignment[]): void {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-  } catch (e) {
-    console.warn('Could not save to localStorage:', e);
+  } catch {
+    // Ignore storage write error
   }
 }
 
@@ -124,8 +128,7 @@ export const assignmentApi = {
         return data.data;
       }
       throw new Error(data.error || 'Failed to fetch assignments');
-    } catch (err) {
-      console.warn('API fetch failed, utilizing cached/local storage fallback:', err);
+    } catch {
       return getStoredAssignments();
     }
   },
@@ -145,8 +148,7 @@ export const assignmentApi = {
         return data.data;
       }
       throw new Error(data.error || 'Failed to create assignment');
-    } catch (err) {
-      console.warn('API create failed, falling back to local creation:', err);
+    } catch {
       const newAssignment: Assignment = {
         id: `asg-${Date.now().toString(36)}`,
         subject: input.subject,
@@ -180,8 +182,7 @@ export const assignmentApi = {
         return data.data;
       }
       throw new Error(data.error || 'Failed to update assignment');
-    } catch (err) {
-      console.warn('API update failed, updating local cache:', err);
+    } catch {
       const stored = getStoredAssignments();
       let updatedItem: Assignment | null = null;
       const updated = stored.map((item) => {
@@ -214,8 +215,7 @@ export const assignmentApi = {
         return data.data;
       }
       throw new Error(data.error || 'Failed to toggle assignment');
-    } catch (err) {
-      console.warn('API toggle failed, toggling in local cache:', err);
+    } catch {
       const stored = getStoredAssignments();
       let toggledItem: Assignment | null = null;
       const updated = stored.map((item) => {
@@ -248,8 +248,7 @@ export const assignmentApi = {
         return id;
       }
       throw new Error(data.error || 'Failed to delete assignment');
-    } catch (err) {
-      console.warn('API delete failed, deleting from local cache:', err);
+    } catch {
       const stored = getStoredAssignments().filter((a) => a.id !== id);
       saveStoredAssignments(stored);
       return id;
@@ -266,8 +265,8 @@ export const assignmentApi = {
           return data.data;
         }
       }
-    } catch (err) {
-      console.warn('Reset seed via API failed, resetting local storage:', err);
+    } catch {
+      // Ignore network failure and fall back
     }
     saveStoredAssignments(INITIAL_FALLBACK_ASSIGNMENTS);
     return INITIAL_FALLBACK_ASSIGNMENTS;

@@ -1,4 +1,45 @@
-import { Assignment } from '../features/assignments/types';
+import { Assignment, StatsSummary, isOverdue } from '../features/assignments/types';
+
+export { isOverdue };
+
+/**
+ * Calculates number of days left until due date relative to today's midnight.
+ * Negative indicates overdue days, 0 is today, positive is future days.
+ */
+export function calcDaysLeft(dueDateStr: string): number {
+  const targetDate = new Date(dueDateStr);
+  const now = new Date();
+  const targetMidnight = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate()).getTime();
+  const todayMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+  const diffMs = targetMidnight - todayMidnight;
+  return Math.round(diffMs / (1000 * 60 * 60 * 24));
+}
+
+/**
+ * Calculates summary statistics for a list of assignments.
+ */
+export function calcStats(assignments: Assignment[]): StatsSummary {
+  let pending = 0;
+  let overdue = 0;
+  let completed = 0;
+
+  for (const item of assignments) {
+    if (item.completed) {
+      completed += 1;
+    } else if (isOverdue(item)) {
+      overdue += 1;
+    } else {
+      pending += 1;
+    }
+  }
+
+  return {
+    total: assignments.length,
+    pending,
+    overdue,
+    completed,
+  };
+}
 
 export type DeadlineType = 'completed' | 'overdue' | 'urgent' | 'warning' | 'normal';
 

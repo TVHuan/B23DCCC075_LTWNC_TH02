@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AssignmentFilter, AssignmentState, Priority } from './types';
+import { Assignment, AssignmentFilter, AssignmentState, Priority } from './types';
 import {
   createAssignmentThunk,
   deleteAssignmentThunk,
@@ -33,6 +33,9 @@ export const assignmentsSlice = createSlice({
     },
     clearError: (state) => {
       state.error = null;
+    },
+    setBulkAssignments: (state, action: PayloadAction<Assignment[]>) => {
+      state.items = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -83,6 +86,6 @@ export const assignmentsSlice = createSlice({
   },
 });
 
-export const { setFilter, setSearchQuery, setSelectedPriority, clearError } = assignmentsSlice.actions;
+export const { setFilter, setSearchQuery, setSelectedPriority, clearError, setBulkAssignments } = assignmentsSlice.actions;
 
 export default assignmentsSlice.reducer;

@@ -10,6 +10,7 @@ interface DashboardLayoutProps {
   urgentAssignments: Assignment[];
   stats: StatsSummary;
   children: ReactNode;
+  onOpenStats?: () => void;
 }
 
 export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
@@ -19,11 +20,12 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   urgentAssignments,
   stats,
   children,
+  onOpenStats,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex">
+    <div className="min-h-screen bg-[#F8FAFC] dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex transition-colors">
       {/* Sidebar */}
       <Sidebar
         currentFilter={currentFilter}
@@ -39,6 +41,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         <Header
           onOpenMobileMenu={() => setMobileMenuOpen(true)}
           urgentAssignments={urgentAssignments}
+          onOpenStats={onOpenStats}
         />
 
         <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">

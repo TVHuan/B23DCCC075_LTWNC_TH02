@@ -72,22 +72,22 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Sidebar Container */}
       <aside
         className={cn(
-          'fixed top-0 bottom-0 left-0 z-50 w-[240px] bg-white border-r border-slate-200/90 flex flex-col justify-between transition-transform duration-200 ease-in-out lg:translate-x-0',
+          'fixed top-0 bottom-0 left-0 z-50 w-[240px] bg-white dark:bg-slate-900 border-r border-slate-200/90 dark:border-slate-800 flex flex-col justify-between transition-transform duration-200 ease-in-out lg:translate-x-0',
           isOpenMobile ? 'translate-x-0 shadow-2xl' : '-translate-x-full lg:translate-x-0'
         )}
       >
         <div>
           {/* Brand Header */}
-          <div className="h-16 px-5 flex items-center justify-between border-b border-slate-100">
+          <div className="h-16 px-5 flex items-center justify-between border-b border-slate-100 dark:border-slate-800">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-xl bg-brand-600 flex items-center justify-center text-white shadow-sm shadow-brand-500/30">
                 <BookOpen className="w-4 h-4" />
               </div>
               <div>
-                <span className="font-extrabold text-[14.5px] text-[#0F172A] tracking-tight block leading-tight">
+                <span className="font-extrabold text-[14.5px] text-[#0F172A] dark:text-slate-100 tracking-tight block leading-tight">
                   Deadline Tracker
                 </span>
-                <span className="text-[10.5px] text-[#64748B] font-medium block">
+                <span className="text-[10.5px] text-[#64748B] dark:text-slate-400 font-medium block">
                   Student Productivity SaaS
                 </span>
               </div>
@@ -96,7 +96,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             {/* Mobile close button */}
             <button
               onClick={onCloseMobile}
-              className="lg:hidden p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100"
+              className="lg:hidden p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
               aria-label="Đóng menu"
             >
               <X className="w-5 h-5" />
@@ -156,8 +156,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     isActive
                       ? activeStyle
                       : item.filter === 'overdue' && item.count > 0
-                      ? 'text-rose-700 hover:bg-rose-50/50'
-                      : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                      ? 'text-rose-700 dark:text-rose-400 hover:bg-rose-50/50 dark:hover:bg-rose-950/40'
+                      : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100'
                   )}
                 >
                   <div className="flex items-center gap-2.5">
@@ -180,8 +180,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                       isActive
                         ? activeBadge
                         : item.filter === 'overdue' && item.count > 0
-                        ? 'bg-rose-100 text-rose-700'
-                        : 'bg-slate-100 text-slate-500'
+                        ? 'bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300'
+                        : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400'
                     )}
                   >
                     {item.count}
@@ -193,34 +193,34 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Footer: Progress Widget & Settings */}
-        <div className="p-3.5 space-y-3 border-t border-slate-100">
+        <div className="p-3.5 space-y-3 border-t border-slate-100 dark:border-slate-800">
           {/* Mini Progress Card */}
-          <div className="bg-slate-50/90 border border-slate-200/70 rounded-xl p-3">
+          <div className="bg-slate-50/90 dark:bg-slate-800/80 border border-slate-200/70 dark:border-slate-700 rounded-xl p-3">
             <div className="flex items-center justify-between text-xs mb-1.5">
-              <div className="flex items-center gap-1.5 font-bold text-[#0F172A] text-[11px]">
-                <GraduationCap className="w-3.5 h-3.5 text-brand-600" />
+              <div className="flex items-center gap-1.5 font-bold text-[#0F172A] dark:text-slate-100 text-[11px]">
+                <GraduationCap className="w-3.5 h-3.5 text-brand-600 dark:text-brand-400" />
                 <span>Tiến độ học kỳ</span>
               </div>
-              <span className="font-bold text-brand-700 text-[11px]">{completionRate}%</span>
+              <span className="font-bold text-brand-700 dark:text-brand-400 text-[11px]">{completionRate}%</span>
             </div>
 
             {/* Progress Bar */}
-            <div className="w-full bg-slate-200/80 rounded-full h-1.5 overflow-hidden">
+            <div className="w-full bg-slate-200/80 dark:bg-slate-700 rounded-full h-1.5 overflow-hidden">
               <div
-                className="bg-brand-600 h-1.5 rounded-full transition-all duration-500"
+                className="bg-brand-600 dark:bg-brand-500 h-1.5 rounded-full transition-all duration-500"
                 style={{ width: `${completionRate}%` }}
               />
             </div>
 
-            <div className="text-[10.5px] text-slate-500 mt-1.5 flex justify-between">
+            <div className="text-[10.5px] text-slate-500 dark:text-slate-400 mt-1.5 flex justify-between">
               <span>Đã hoàn thành</span>
-              <strong className="text-slate-700">{stats.completed}/{stats.total} bài</strong>
+              <strong className="text-slate-700 dark:text-slate-200">{stats.completed}/{stats.total} bài</strong>
             </div>
           </div>
 
           <button
             onClick={() => alert('Student Deadline Tracker Pro • LTWNC 2026')}
-            className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs font-medium text-slate-500 hover:text-slate-800 hover:bg-slate-50 rounded-xl transition-colors"
+            className="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors"
           >
             <Settings className="w-4 h-4 text-slate-400" />
             <span>Cài đặt & Trợ giúp</span>

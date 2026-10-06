@@ -39,11 +39,11 @@ function Root({ assignment, onToggle, onEdit, onDelete, children, className }: R
     <AssignmentCardContext.Provider value={{ assignment, onToggle, onEdit, onDelete }}>
       <div
         className={cn(
-          'group relative bg-white border rounded-xl transition-all duration-200 overflow-hidden',
-          'hover:shadow-card-hover hover:border-slate-300/90',
+          'group relative bg-white dark:bg-slate-900 border rounded-xl transition-all duration-200 overflow-hidden',
+          'hover:shadow-card-hover hover:border-slate-300/90 dark:hover:border-slate-700',
           isCompleted
-            ? 'bg-slate-50/60 border-slate-200/70 opacity-75'
-            : 'border-slate-200/80 shadow-card',
+            ? 'bg-slate-50/60 dark:bg-slate-900/40 border-slate-200/70 dark:border-slate-800 opacity-75'
+            : 'border-slate-200/80 dark:border-slate-800 shadow-card',
           className
         )}
       >
@@ -51,7 +51,7 @@ function Root({ assignment, onToggle, onEdit, onDelete, children, className }: R
         <div
           className={cn(
             'absolute left-0 top-0 bottom-0 w-[3.5px] transition-opacity',
-            isCompleted ? 'bg-slate-300' : theme.accent
+            isCompleted ? 'bg-slate-300 dark:bg-slate-700' : theme.accent
           )}
         />
 
@@ -82,7 +82,7 @@ function Checkbox({ className }: CheckboxProps) {
         'w-5 h-5 rounded-md border flex items-center justify-center transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-1 shrink-0',
         assignment.completed
           ? 'bg-emerald-500 border-emerald-500 text-white animate-check-pop shadow-xs'
-          : 'border-slate-300 hover:border-brand-600 bg-white hover:bg-brand-50/50 text-transparent',
+          : 'border-slate-300 dark:border-slate-600 hover:border-brand-600 bg-white dark:bg-slate-800 hover:bg-brand-50/50 text-transparent',
         className
       )}
     >
@@ -115,8 +115,8 @@ function Subject({ className }: { className?: string }) {
       className={cn(
         'inline-flex items-center text-[11px] font-semibold tracking-wide px-2 py-0.5 rounded-md border transition-colors',
         assignment.completed
-          ? 'text-slate-500 bg-slate-100 border-slate-200'
-          : `${theme.text} ${theme.bg} ${theme.border}`,
+          ? 'text-slate-500 bg-slate-100 dark:bg-slate-800 dark:text-slate-400 border-slate-200 dark:border-slate-700'
+          : `${theme.text} ${theme.bg} ${theme.border} dark:bg-slate-800/90 dark:text-indigo-300 dark:border-indigo-900/60`,
         className
       )}
     >
@@ -131,8 +131,8 @@ function Title({ className }: { className?: string }) {
   return (
     <h3
       className={cn(
-        'text-[14.5px] sm:text-[15.5px] font-semibold text-[#0F172A] leading-snug transition-all',
-        assignment.completed && 'assignment-completed-title',
+        'text-[14.5px] sm:text-[15.5px] font-semibold text-[#0F172A] dark:text-slate-100 leading-snug transition-all',
+        assignment.completed && 'assignment-completed-title dark:text-slate-500 line-through',
         className
       )}
     >

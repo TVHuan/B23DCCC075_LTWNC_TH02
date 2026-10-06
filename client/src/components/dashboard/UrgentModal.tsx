@@ -29,9 +29,9 @@ export const UrgentModal: React.FC<UrgentModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs animate-in fade-in duration-150">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150">
       <div
-        className="bg-white rounded-2xl shadow-2xl border border-amber-200/80 w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200"
+        className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-amber-200/80 dark:border-amber-800/80 w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200"
         role="dialog"
         aria-modal="true"
       >
@@ -67,25 +67,25 @@ export const UrgentModal: React.FC<UrgentModalProps> = ({
             return (
               <div
                 key={assignment.id}
-                className="bg-slate-50 border border-slate-200/90 rounded-xl p-3.5 hover:border-amber-300 hover:bg-amber-50/20 transition-all space-y-2.5"
+                className="bg-slate-50 dark:bg-slate-800/70 border border-slate-200/90 dark:border-slate-700 rounded-xl p-3.5 hover:border-amber-300 dark:hover:border-amber-700 hover:bg-amber-50/20 transition-all space-y-2.5"
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className="space-y-1 min-w-0">
-                    <span className="text-[11px] font-semibold text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded-md inline-block">
+                    <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded-md inline-block">
                       {assignment.subject}
                     </span>
-                    <h4 className="text-sm font-bold text-slate-900 truncate">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-slate-100 truncate">
                       {assignment.title}
                     </h4>
                   </div>
-                  <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold border ${PRIORITY_CONFIG[assignment.priority].badgeClass}`}>
+                  <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold border ${PRIORITY_CONFIG[assignment.priority].badgeClass} dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700`}>
                     <span className={`w-1.5 h-1.5 rounded-full ${PRIORITY_CONFIG[assignment.priority].dotClass}`} />
                     {PRIORITY_CONFIG[assignment.priority].label}
                   </span>
                 </div>
 
                 {assignment.description && (
-                  <p className="text-xs text-slate-600 line-clamp-2 bg-white/70 p-2 rounded-lg border border-slate-200/60">
+                  <p className="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 bg-white/70 dark:bg-slate-850 p-2 rounded-lg border border-slate-200/60 dark:border-slate-700">
                     {assignment.description}
                   </p>
                 )}
@@ -103,7 +103,7 @@ export const UrgentModal: React.FC<UrgentModalProps> = ({
                         onEdit(assignment);
                         onClose();
                       }}
-                      className="p-1.5 text-slate-500 hover:text-slate-800 hover:bg-white rounded-lg border border-slate-200/70 transition-colors"
+                      className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-white dark:hover:bg-slate-700 rounded-lg border border-slate-200/70 dark:border-slate-700 transition-colors"
                       title="Chỉnh sửa bài tập"
                     >
                       <Edit2 className="w-3.5 h-3.5" />
@@ -128,13 +128,13 @@ export const UrgentModal: React.FC<UrgentModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="bg-slate-50 px-5 py-3 border-t border-slate-100 flex items-center justify-between text-xs">
+        <div className="bg-slate-50 dark:bg-slate-800/80 px-5 py-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
           <button
             onClick={() => {
               onClose();
               onScrollToTimeline();
             }}
-            className="inline-flex items-center gap-1.5 text-brand-600 hover:text-brand-800 font-semibold"
+            className="inline-flex items-center gap-1.5 text-brand-600 dark:text-brand-400 hover:text-brand-800 dark:hover:text-brand-300 font-semibold"
           >
             <ArrowDownRight className="w-3.5 h-3.5" />
             <span>Xem trên danh sách chính</span>
@@ -142,7 +142,7 @@ export const UrgentModal: React.FC<UrgentModalProps> = ({
 
           <button
             onClick={onClose}
-            className="px-3.5 py-1.5 bg-white border border-slate-200 rounded-lg text-slate-700 hover:bg-slate-100 font-semibold"
+            className="px-3.5 py-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 font-semibold transition-colors"
           >
             Đóng
           </button>

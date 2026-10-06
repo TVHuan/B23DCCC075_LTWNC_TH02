@@ -101,15 +101,15 @@ export const AssignmentFormDialog: React.FC<AssignmentFormDialogProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150">
       <div
-        className="bg-white rounded-2xl max-w-xl w-full shadow-modal border border-slate-200 overflow-hidden animate-in zoom-in-95 duration-150 max-h-[90vh] flex flex-col"
+        className="bg-white dark:bg-slate-900 rounded-2xl max-w-xl w-full shadow-modal border border-slate-200 dark:border-slate-800 overflow-hidden animate-in zoom-in-95 duration-150 max-h-[90vh] flex flex-col"
         role="dialog"
         aria-modal="true"
       >
         {/* Header - Simple & Clean */}
-        <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-white shrink-0">
+        <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-white dark:bg-slate-900 shrink-0">
           <div className="flex items-center gap-2">
-            <PlusCircle className="w-4 h-4 text-brand-600" />
-            <h2 className="text-base font-bold text-[#0F172A]">
+            <PlusCircle className="w-4 h-4 text-brand-600 dark:text-brand-400" />
+            <h2 className="text-base font-bold text-[#0F172A] dark:text-slate-100">
               {isEdit ? 'Chỉnh sửa bài tập' : 'Thêm bài tập'}
             </h2>
           </div>
@@ -117,7 +117,7 @@ export const AssignmentFormDialog: React.FC<AssignmentFormDialogProps> = ({
           <button
             onClick={onClose}
             aria-label="Đóng"
-            className="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
+            className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -127,7 +127,7 @@ export const AssignmentFormDialog: React.FC<AssignmentFormDialogProps> = ({
         <form onSubmit={handleSubmit} className="p-5 space-y-4 overflow-y-auto flex-1">
           {/* Môn học */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
               Môn học <span className="text-rose-500">*</span>
             </label>
             <input
@@ -135,8 +135,8 @@ export const AssignmentFormDialog: React.FC<AssignmentFormDialogProps> = ({
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               placeholder="Nhập môn học..."
-              className={`w-full px-3 py-2 text-sm bg-slate-50 border rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors ${
-                errors.subject ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300'
+              className={`w-full px-3 py-2 text-sm bg-slate-50 dark:bg-slate-800 border rounded-xl focus:bg-white dark:focus:bg-slate-850 focus:outline-none focus:ring-2 focus:ring-brand-500 text-slate-900 dark:text-slate-100 transition-colors ${
+                errors.subject ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300 dark:border-slate-700'
               }`}
             />
 
@@ -153,7 +153,7 @@ export const AssignmentFormDialog: React.FC<AssignmentFormDialogProps> = ({
                     className={`text-[11px] font-medium px-2 py-0.5 rounded-md border shrink-0 transition-all ${
                       isSelected
                         ? 'bg-brand-600 text-white border-brand-600'
-                        : `${theme.bg} ${theme.text} ${theme.border} hover:opacity-80`
+                        : `${theme.bg} ${theme.text} ${theme.border} dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 hover:opacity-80`
                     }`}
                   >
                     {s}
@@ -172,7 +172,7 @@ export const AssignmentFormDialog: React.FC<AssignmentFormDialogProps> = ({
 
           {/* Tên bài tập */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
               Tên bài tập <span className="text-rose-500">*</span>
             </label>
             <input
@@ -180,8 +180,8 @@ export const AssignmentFormDialog: React.FC<AssignmentFormDialogProps> = ({
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Nhập tên bài tập..."
-              className={`w-full px-3 py-2 text-sm bg-slate-50 border rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors ${
-                errors.title ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300'
+              className={`w-full px-3 py-2 text-sm bg-slate-50 dark:bg-slate-800 border rounded-xl focus:bg-white dark:focus:bg-slate-850 focus:outline-none focus:ring-2 focus:ring-brand-500 text-slate-900 dark:text-slate-100 transition-colors ${
+                errors.title ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300 dark:border-slate-700'
               }`}
             />
             {errors.title && (
@@ -194,7 +194,7 @@ export const AssignmentFormDialog: React.FC<AssignmentFormDialogProps> = ({
 
           {/* Mô tả dạng Word (Word-like Rich Textarea) */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
               Mô tả & Yêu cầu chi tiết
             </label>
             <WordEditor
@@ -209,28 +209,28 @@ export const AssignmentFormDialog: React.FC<AssignmentFormDialogProps> = ({
             {/* Due date */}
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                   Hạn nộp <span className="text-rose-500">*</span>
                 </label>
                 <div className="flex gap-1">
                   <button
                     type="button"
                     onClick={() => setQuickDate(0)}
-                    className="text-[10.5px] px-1.5 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium"
+                    className="text-[10.5px] px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-medium"
                   >
                     Hôm nay
                   </button>
                   <button
                     type="button"
                     onClick={() => setQuickDate(1)}
-                    className="text-[10.5px] px-1.5 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium"
+                    className="text-[10.5px] px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-medium"
                   >
                     Ngày mai
                   </button>
                   <button
                     type="button"
                     onClick={() => setQuickDate(7)}
-                    className="text-[10.5px] px-1.5 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium"
+                    className="text-[10.5px] px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-medium"
                   >
                     +7 ngày
                   </button>
@@ -241,8 +241,8 @@ export const AssignmentFormDialog: React.FC<AssignmentFormDialogProps> = ({
                 type="date"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
-                className={`w-full px-3 py-2 text-sm bg-slate-50 border rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors ${
-                  errors.dueDate ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300'
+                className={`w-full px-3 py-2 text-sm bg-slate-50 dark:bg-slate-800 border rounded-xl focus:bg-white dark:focus:bg-slate-850 focus:outline-none focus:ring-2 focus:ring-brand-500 text-slate-900 dark:text-slate-100 transition-colors ${
+                  errors.dueDate ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300 dark:border-slate-700'
                 }`}
               />
               {errors.dueDate && (
@@ -255,7 +255,7 @@ export const AssignmentFormDialog: React.FC<AssignmentFormDialogProps> = ({
 
             {/* Priority */}
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                 Độ ưu tiên
               </label>
               <div className="grid grid-cols-3 gap-1.5">
@@ -264,8 +264,8 @@ export const AssignmentFormDialog: React.FC<AssignmentFormDialogProps> = ({
                   onClick={() => setPriority('low')}
                   className={`py-2 px-2 text-xs font-semibold rounded-xl border transition-all ${
                     priority === 'low'
-                      ? 'bg-slate-800 text-white border-slate-800'
-                      : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
+                      ? 'bg-slate-800 dark:bg-slate-700 text-white border-slate-800 dark:border-slate-600'
+                      : 'bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-750'
                   }`}
                 >
                   Thấp
@@ -276,7 +276,7 @@ export const AssignmentFormDialog: React.FC<AssignmentFormDialogProps> = ({
                   className={`py-2 px-2 text-xs font-semibold rounded-xl border transition-all ${
                     priority === 'medium'
                       ? 'bg-amber-500 text-white border-amber-500'
-                      : 'bg-amber-50/60 text-amber-800 border-amber-200 hover:bg-amber-100/60'
+                      : 'bg-amber-50/60 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800 hover:bg-amber-100/60'
                   }`}
                 >
                   Vừa
@@ -287,7 +287,7 @@ export const AssignmentFormDialog: React.FC<AssignmentFormDialogProps> = ({
                   className={`py-2 px-2 text-xs font-semibold rounded-xl border transition-all ${
                     priority === 'high'
                       ? 'bg-rose-600 text-white border-rose-600'
-                      : 'bg-rose-50/60 text-rose-800 border-rose-200 hover:bg-rose-100/60'
+                      : 'bg-rose-50/60 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 border-rose-200 dark:border-rose-800 hover:bg-rose-100/60'
                   }`}
                 >
                   Cao
@@ -297,12 +297,12 @@ export const AssignmentFormDialog: React.FC<AssignmentFormDialogProps> = ({
           </div>
 
           {/* Form Actions */}
-          <div className="pt-3 border-t border-slate-100 flex items-center justify-end gap-2 shrink-0">
+          <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end gap-2 shrink-0">
             <button
               type="button"
               onClick={onClose}
               disabled={submitting}
-              className="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-xl transition-colors"
+              className="px-4 py-2 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
             >
               Hủy
             </button>
